@@ -1,16 +1,16 @@
 import { useState } from "react";
+
 import {
   List,
   ListItem,
   ListItemText,
   Button,
+  ButtonBase,
   TextField,
   Stack,
 } from "@mui/material";
 
-interface ChatListProps {
-  onSelectChat: (chatId: string) => void;
-}
+import { ChatListProps } from "../types/type";
 
 function ChatList({ onSelectChat }: ChatListProps) {
   const [chats, setChats] = useState<string[]>([]);
@@ -41,9 +41,11 @@ function ChatList({ onSelectChat }: ChatListProps) {
 
       <List>
         {chats.map((chat) => (
-          <ListItem button key={chat} onClick={() => onSelectChat(chat)}>
-            <ListItemText primary={chat} />
-          </ListItem>
+          <ButtonBase component="button" onClick={() => onSelectChat(chat)}>
+            <ListItem key={chat}>
+              <ListItemText primary={chat} />
+            </ListItem>
+          </ButtonBase>
         ))}
       </List>
     </Stack>

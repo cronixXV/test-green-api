@@ -1,6 +1,9 @@
 import { useState } from "react";
+
 import { TextField, Button, Stack, Typography } from "@mui/material";
+
 import { SendMessageFormProps } from "../types/type";
+import { sendMessage } from "../libs/api";
 
 function SendMessageForm({
   idInstance,
@@ -15,19 +18,12 @@ function SendMessageForm({
     if (!message) return;
 
     try {
-      const url = `https://api.green-api.com/waInstance${idInstance}/sendMessage/${apiTokenInstance}`;
-      const payload = {
-        chatId: chatId + "@c.us",
-        message: message,
-      };
-
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+      const response = await sendMessage(
+        idInstance,
+        apiTokenInstance,
+        message,
+        chatId
+      );
 
       if (response.ok) {
         setStatus("Сообщение отправлено!");

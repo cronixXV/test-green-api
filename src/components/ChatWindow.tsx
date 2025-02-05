@@ -1,7 +1,10 @@
 import { useContext, useEffect, useRef, useState } from "react";
+
 import { Box, Typography, Paper } from "@mui/material";
+
 import SendMessageForm from "./SendMessageForm";
-import { AuthContext } from "../context/AuthProvider";
+import { AuthContext } from "../context/AuthContext";
+
 import { Message } from "../types/type";
 import { ChatWindowProps } from "../types/type";
 

@@ -1,8 +1,11 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
+
 import { TextField, Button, Stack } from "@mui/material";
+
+import { AuthContext } from "../context/AuthContext";
+
 import { LoginFormData } from "../types/type";
-import { AuthContext } from "../context/AuthProvider";
 
 function LoginForm() {
   const { login } = useContext(AuthContext)!;
@@ -16,6 +19,7 @@ function LoginForm() {
     console.log("Отправкаформы", data);
     login(data.idInstance, data.apiTokenInstance);
   };
+
   return (
     <Stack
       component="form"

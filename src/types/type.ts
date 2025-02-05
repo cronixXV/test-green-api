@@ -23,6 +23,10 @@ export interface Message {
   sender: "me" | "them";
 }
 
+export interface ChatListProps {
+  onSelectChat: (chatId: string) => void;
+}
+
 export interface ChatWindowProps {
   chatId: string;
   // idInstance: string;

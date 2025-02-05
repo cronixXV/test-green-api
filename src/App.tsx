@@ -1,8 +1,11 @@
 import { useContext } from "react";
+
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
-import LoginForm from "./components/LoginForm";
-import { AuthContext } from "./context/AuthProvider";
+
 import Chat from "./components/Chat";
+import LoginForm from "./components/LoginForm";
+
+import { AuthContext } from "./context/AuthContext";
 
 function App() {
   const auth = useContext(AuthContext);
