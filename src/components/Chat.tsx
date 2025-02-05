@@ -3,7 +3,7 @@ import { Grid, Paper, Typography } from "@mui/material";
 import ChatList from "./ChatList";
 import ChatWindow from "./ChatWindow";
 
-const Chat = () => {
+function Chat() {
   const [selectedChat, setSelectedChat] = useState<string | null>(null);
 
   return (
@@ -26,6 +26,6 @@ const Chat = () => {
       </Grid>
     </Grid>
   );
-};
+}
 
 export default Chat;

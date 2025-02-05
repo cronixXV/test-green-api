@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { TextField, Button, Stack, Typography } from "@mui/material";
 import { SendMessageFormProps } from "../types/type";
 
-const SendMessageForm: React.FC<SendMessageFormProps> = ({
+function SendMessageForm({
   idInstance,
   apiTokenInstance,
   chatId,
   onMessageSend,
-}) => {
+}: SendMessageFormProps) {
   const [message, setMessage] = useState<string>("");
   const [status, setStatus] = useState<string | null>(null);
 
@@ -57,6 +57,6 @@ const SendMessageForm: React.FC<SendMessageFormProps> = ({
       {status && <Typography variant="body1">{status}</Typography>}
     </Stack>
   );
-};
+}
 
 export default SendMessageForm;

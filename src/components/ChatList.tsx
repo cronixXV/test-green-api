@@ -12,7 +12,7 @@ interface ChatListProps {
   onSelectChat: (chatId: string) => void;
 }
 
-const ChatList: React.FC<ChatListProps> = ({ onSelectChat }) => {
+function ChatList({ onSelectChat }: ChatListProps) {
   const [chats, setChats] = useState<string[]>([]);
   const [newChat, setNewChat] = useState("");
 
@@ -25,7 +25,6 @@ const ChatList: React.FC<ChatListProps> = ({ onSelectChat }) => {
 
   return (
     <Stack spacing={2}>
-      {/* Поле для добавления нового чата */}
       <Stack direction="row" spacing={1}>
         <TextField
           label="Номер телефона"
@@ -40,7 +39,6 @@ const ChatList: React.FC<ChatListProps> = ({ onSelectChat }) => {
         </Button>
       </Stack>
 
-      {/* Список чатов */}
       <List>
         {chats.map((chat) => (
           <ListItem button key={chat} onClick={() => onSelectChat(chat)}>
@@ -50,6 +48,6 @@ const ChatList: React.FC<ChatListProps> = ({ onSelectChat }) => {
       </List>
     </Stack>
   );
-};
+}
 
 export default ChatList;

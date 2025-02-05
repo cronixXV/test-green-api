@@ -5,7 +5,7 @@ import { AuthContext } from "../context/AuthProvider";
 import { Message } from "../types/type";
 import { ChatWindowProps } from "../types/type";
 
-const ChatWindow: React.FC<ChatWindowProps> = ({ chatId }) => {
+function ChatWindow({ chatId }: ChatWindowProps) {
   const [messages, setMessages] = useState<Message[]>([]);
 
   const chatRef = useRef<HTMLDivElement>(null);
@@ -73,6 +73,6 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ chatId }) => {
       />
     </Box>
   );
-};
+}
 
 export default ChatWindow;
