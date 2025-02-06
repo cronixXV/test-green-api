@@ -12,7 +12,9 @@ function Chat() {
     <Grid2 container spacing={2} sx={{ height: "90vh", mt: 2 }}>
       <Grid2 size={{ xs: 4 }}>
         <Paper sx={{ height: "100%", p: 2 }}>
-          <Typography variant="h6">Чаты</Typography>
+          <Typography variant="h6" mb={2}>
+            Чаты
+          </Typography>
           <ChatList onSelectChat={setSelectedChat} />
         </Paper>
       </Grid2>

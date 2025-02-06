@@ -21,6 +21,7 @@ export interface Message {
   id: string;
   text: string;
   sender: "me" | "them";
+  timestamp: string;
 }
 
 export interface ChatListProps {
@@ -29,6 +30,4 @@ export interface ChatListProps {
 
 export interface ChatWindowProps {
   chatId: string;
-  // idInstance: string;
-  // apiTokenInstance: string;
 }

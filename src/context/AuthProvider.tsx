@@ -22,7 +22,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   const login = (id: string, token: string) => {
     localStorage.setItem("idInstance", id);
     localStorage.setItem("apiTokenInstance", token);
-    console.log("Логин выполнен:", id, token);
+
     setIdInstance(id);
     setApiTokenInstance(token);
   };
@@ -30,6 +30,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   const logout = () => {
     localStorage.removeItem("idInstance");
     localStorage.removeItem("apiTokenInstance");
+
     setIdInstance("");
     setApiTokenInstance("");
   };

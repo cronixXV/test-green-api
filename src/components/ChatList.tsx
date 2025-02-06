@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import {
-  List,
   ListItem,
   ListItemText,
   Button,
@@ -39,7 +38,7 @@ function ChatList({ onSelectChat }: ChatListProps) {
         </Button>
       </Stack>
 
-      <List>
+      <Stack direction={"column"} alignItems={"center"}>
         {chats.map((chat) => (
           <ButtonBase component="button" onClick={() => onSelectChat(chat)}>
             <ListItem key={chat}>
@@ -47,7 +46,7 @@ function ChatList({ onSelectChat }: ChatListProps) {
             </ListItem>
           </ButtonBase>
         ))}
-      </List>
+      </Stack>
     </Stack>
   );
 }

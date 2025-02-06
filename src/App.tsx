@@ -25,7 +25,7 @@ function App() {
           <LoginForm />
         ) : (
           <>
-            <Typography>Вы вошли как {auth.idInstance}!</Typography>
+            <Typography>Вы вошли как {auth.idInstance}</Typography>
 
             <Box display="flex" justifyContent="flex-end" width={"100%"}>
               <Button

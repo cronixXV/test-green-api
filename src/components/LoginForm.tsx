@@ -16,7 +16,6 @@ function LoginForm() {
   } = useForm<LoginFormData>();
 
   const onSubmit = (data: LoginFormData) => {
-    console.log("Отправкаформы", data);
     login(data.idInstance, data.apiTokenInstance);
   };
 
