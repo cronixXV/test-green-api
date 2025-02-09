@@ -1,13 +1,16 @@
-import React, { useState } from "react";
-import { TextField, Button, Stack, Typography } from "@mui/material";
-import { SendMessageFormProps } from "../types/type";
+import { useState } from "react";
 
-const SendMessageForm: React.FC<SendMessageFormProps> = ({
+import { TextField, Button, Stack, Typography } from "@mui/material";
+
+import { SendMessageFormProps } from "../types/type";
+import { sendMessage } from "../libs/api";
+
+function SendMessageForm({
   idInstance,
   apiTokenInstance,
   chatId,
   onMessageSend,
-}) => {
+}: SendMessageFormProps) {
   const [message, setMessage] = useState<string>("");
   const [status, setStatus] = useState<string | null>(null);
 
@@ -15,19 +18,12 @@ const SendMessageForm: React.FC<SendMessageFormProps> = ({
     if (!message) return;
 
     try {
-      const url = `https://api.green-api.com/waInstance${idInstance}/sendMessage/${apiTokenInstance}`;
-      const payload = {
-        chatId: chatId + "@c.us",
-        message: message,
-      };
-
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+      const response = await sendMessage(
+        idInstance,
+        apiTokenInstance,
+        message,
+        chatId
+      );
 
       if (response.ok) {
         setStatus("Сообщение отправлено!");
@@ -57,6 +53,6 @@ const SendMessageForm: React.FC<SendMessageFormProps> = ({
       {status && <Typography variant="body1">{status}</Typography>}
     </Stack>
   );
-};
+}
 
 export default SendMessageForm;

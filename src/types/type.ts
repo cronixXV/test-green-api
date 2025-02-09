@@ -21,10 +21,13 @@ export interface Message {
   id: string;
   text: string;
   sender: "me" | "them";
+  timestamp: string;
+}
+
+export interface ChatListProps {
+  onSelectChat: (chatId: string) => void;
 }
 
 export interface ChatWindowProps {
   chatId: string;
-  // idInstance: string;
-  // apiTokenInstance: string;
 }

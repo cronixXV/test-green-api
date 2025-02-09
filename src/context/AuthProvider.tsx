@@ -1,12 +1,5 @@
-import React, { createContext, useState, useEffect, ReactNode } from "react";
-import { AuthContextType } from "../types/type";
-
-export const AuthContext = createContext<AuthContextType>({
-  idInstance: "",
-  apiTokenInstance: "",
-  login: () => {},
-  logout: () => {},
-});
+import React, { useState, useEffect, ReactNode } from "react";
+import { AuthContext } from "./AuthContext";
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   children,
@@ -29,7 +22,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   const login = (id: string, token: string) => {
     localStorage.setItem("idInstance", id);
     localStorage.setItem("apiTokenInstance", token);
-    console.log("Логинвыполнен:", id, token);
+
     setIdInstance(id);
     setApiTokenInstance(token);
   };
@@ -37,6 +30,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   const logout = () => {
     localStorage.removeItem("idInstance");
     localStorage.removeItem("apiTokenInstance");
+
     setIdInstance("");
     setApiTokenInstance("");
   };

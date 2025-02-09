@@ -1,18 +1,17 @@
 import { useState } from "react";
+
 import {
-  List,
   ListItem,
   ListItemText,
   Button,
+  ButtonBase,
   TextField,
   Stack,
 } from "@mui/material";
 
-interface ChatListProps {
-  onSelectChat: (chatId: string) => void;
-}
+import { ChatListProps } from "../types/type";
 
-const ChatList: React.FC<ChatListProps> = ({ onSelectChat }) => {
+function ChatList({ onSelectChat }: ChatListProps) {
   const [chats, setChats] = useState<string[]>([]);
   const [newChat, setNewChat] = useState("");
 
@@ -25,7 +24,6 @@ const ChatList: React.FC<ChatListProps> = ({ onSelectChat }) => {
 
   return (
     <Stack spacing={2}>
-      {/* Поле для добавления нового чата */}
       <Stack direction="row" spacing={1}>
         <TextField
           label="Номер телефона"
@@ -40,16 +38,17 @@ const ChatList: React.FC<ChatListProps> = ({ onSelectChat }) => {
         </Button>
       </Stack>
 
-      {/* Список чатов */}
-      <List>
+      <Stack direction={"column"} alignItems={"center"}>
         {chats.map((chat) => (
-          <ListItem button key={chat} onClick={() => onSelectChat(chat)}>
-            <ListItemText primary={chat} />
-          </ListItem>
+          <ButtonBase component="button" onClick={() => onSelectChat(chat)}>
+            <ListItem key={chat}>
+              <ListItemText primary={chat} />
+            </ListItem>
+          </ButtonBase>
         ))}
-      </List>
+      </Stack>
     </Stack>
   );
-};
+}
 
 export default ChatList;

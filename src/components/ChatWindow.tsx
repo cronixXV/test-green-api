@@ -1,12 +1,15 @@
-import { useContext, useEffect, useRef, useState } from "react";
-import { Box, Typography, Paper } from "@mui/material";
-import SendMessageForm from "./SendMessageForm";
-import { AuthContext } from "../context/AuthProvider";
-import { Message } from "../types/type";
-import { ChatWindowProps } from "../types/type";
+import { useContext, useEffect, useRef } from "react";
 
-const ChatWindow: React.FC<ChatWindowProps> = ({ chatId }) => {
-  const [messages, setMessages] = useState<Message[]>([]);
+import { Box, Typography, Paper } from "@mui/material";
+
+import SendMessageForm from "./SendMessageForm";
+import { AuthContext } from "../context/AuthContext";
+
+import { ChatWindowProps } from "../types/type";
+import { useMessage } from "../hooks/useMessage";
+
+function ChatWindow({ chatId }: ChatWindowProps) {
+  const { messages, setMessages } = useMessage(chatId);
 
   const chatRef = useRef<HTMLDivElement>(null);
 
@@ -19,9 +22,19 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ chatId }) => {
   }, [messages]);
 
   const addMessage = (message: string) => {
+    const timestamp = new Date().toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+
     setMessages((prevMessages) => [
       ...prevMessages,
-      { id: (prevMessages.length + 1).toString(), text: message, sender: "me" },
+      {
+        id: (prevMessages.length + 1).toString(),
+        text: message,
+        sender: "me",
+        timestamp,
+      },
     ]);
   };
 
@@ -59,9 +72,20 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ chatId }) => {
               bgcolor: msg.sender === "me" ? "primary.main" : "grey.300",
               color: msg.sender === "me" ? "white" : "black",
               borderRadius: 2,
+              boxShadow: 1,
+              transition: "all 0.2s",
+              "&:hover": {
+                boxShadow: 3,
+              },
             }}
           >
-            {msg.text}
+            <Typography variant="body2">{msg.text}</Typography>
+            <Typography
+              variant="caption"
+              sx={{ display: "block", textAlign: "right", opacity: 0.7 }}
+            >
+              {msg.timestamp}
+            </Typography>
           </Paper>
         ))}
       </Box>
@@ -73,6 +97,6 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ chatId }) => {
       />
     </Box>
   );
-};
+}
 
 export default ChatWindow;
