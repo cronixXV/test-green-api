@@ -17,7 +17,7 @@ export function useMessage(chatId: string) {
         if (data && data.body?.senderData?.chatId === chatId + "@c.us") {
           const newMessage: Message = {
             id: data.receiptId.toString(),
-            text: data.body.messageData.textMessageData.textMessage,
+            text: data.body?.messageData?.textMessageData?.textMessage,
             sender: "them",
             timestamp: new Date(data.timestamp).toLocaleTimeString([], {
               hour: "2-digit",
@@ -37,7 +37,7 @@ export function useMessage(chatId: string) {
       }
     };
 
-    const interval = setInterval(fetchMessages, 15000);
+    const interval = setInterval(fetchMessages, 5000);
     return () => clearInterval(interval);
   }, [chatId]);
 
